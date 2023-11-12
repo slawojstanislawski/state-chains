@@ -1,0 +1,49 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "addCapability": {
+      "description": "Schematic for adding AWS capability to a state machine",
+      "factory": "./addCapability/index#addCapability"
+    },
+    "stateMachine": {
+      "description": "Schematic for a new state machine",
+      "factory": "./stateMachine/index#stateMachine"
+    },
+    "function": {
+      "description": "Schematic for a new function",
+      "factory": "./function/index#lambda"
+    },
+    "snsPublisherFunction": {
+      "description": "Schematic for a new function publishing to an SNS topic",
+      "factory": "./snsPublisherFunction/index#snsPublisherFunction"
+    },
+    "snsSubscriberFunction": {
+      "description": "Schematic for a new function subscribing to an SNS topic",
+      "factory": "./snsSubscriberFunction/index#snsSubscriberFunction"
+    },
+    "sqsSubscriberFunction": {
+      "description": "Schematic for a new function subscribing to an SQS queue",
+      "factory": "./sqsSubscriberFunction/index#sqsSubscriberFunction"
+    },
+    "sqsPublisherFunction": {
+      "description": "Schematic for a new function publishing to an SQS queue",
+      "factory": "./sqsPublisherFunction/index#sqsPublisherFunction"
+    },
+    "ddbTable": {
+      "description": "Schematic for a new DynamoDB table",
+      "factory": "./ddbTable/index#ddbTable"
+    },
+    "snsTopic": {
+      "description": "Schematic for a new SNS topic",
+      "factory": "./snsTopic/index#snsTopic"
+    },
+    "sqsQueue": {
+      "description": "Schematic for a new SQS queue",
+      "factory": "./sqsQueue/index#sqsQueue"
+    },
+    "happyPathTest": {
+      "description": "Schematic for a Happy Path test for a state machine",
+      "factory": "./happyPathTest/index#happyPathTest"
+    }
+  }
+}

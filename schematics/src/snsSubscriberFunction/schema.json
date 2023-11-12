@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "snsSubscriberFunction",
+  "title": "SNS Subscriber Function schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the function",
+      "x-prompt": "What is the name of the function (no spaces)?"
+    },
+    "topic-name": {
+      "type": "string",
+      "description": "Name of the topic",
+      "x-prompt": "What is the name of the topic (no spaces)?"
+    }
+  },
+  "required": ["name", "topic-name"],
+  "additionalProperties": false
+}

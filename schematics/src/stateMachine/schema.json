@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "stateMachine",
+  "title": "State Machine schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the state machine",
+      "x-prompt": "What is the name of the state machine (no spaces)?"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

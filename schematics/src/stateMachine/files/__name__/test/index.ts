@@ -1,0 +1,5 @@
+export * from './types'
+export * from './unit/<%= name %>.testSuite.unit'
+export * from './e2e/<%= name %>.testSuite.e2e'
+export * from './<%= name %>.testSuiteMocks'
+export * from './<%= name %>.testSuiteMocks.type'

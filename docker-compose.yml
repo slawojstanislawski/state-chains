@@ -1,0 +1,38 @@
+# UNCOMMENT network_mode ON LINUX
+version: '3.8'
+services:
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    # be very careful about increasing docker image version, tons of weird errors
+    # about credentials missing, with local dynamodb/sns/sqs
+    image: "amazon/dynamodb-local:1.22.0"
+    container_name: dynamodb-local
+    ports:
+      - "${OFFLINE_DYNAMODB_PORT}:${OFFLINE_DYNAMODB_PORT}"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+  sqs-local:
+    image: softwaremill/elasticmq-native:1.4.3
+    container_name: sqs-local
+    ports:
+      - "${OFFLINE_SQS_PORT}:${OFFLINE_SQS_PORT}"
+  sf-local:
+#    network_mode: "host"  # UNCOMMENT ON LINUX
+    image: "amazon/aws-stepfunctions-local:1.13.1"
+    container_name: sf-local
+    environment:
+      AWS_ACCOUNT_ID: ${OFFLINE_ACCOUNT_ID}
+      AWS_DEFAULT_REGION: ${OFFLINE_REGION}
+      LAMBDA_ENDPOINT: http://host.docker.internal:${OFFLINE_LAMBDA_PORT}
+      DYNAMODB_ENDPOINT: http://host.docker.internal:${OFFLINE_DYNAMODB_PORT}
+      SNS_ENDPOINT: http://host.docker.internal:${OFFLINE_SNS_PORT}
+      SQS_ENDPOINT: http://host.docker.internal:${OFFLINE_SQS_PORT}
+      STEP_FUNCTIONS_ENDPOINT: http://host.docker.internal:${OFFLINE_SF_LOCAL_PORT}
+      SFN_MOCK_CONFIG: /home/StepFunctionsLocal/MockConfigFile.json
+      # AWS_ACCESS_KEY: DummyAccessKey
+      # AWS_SECRET_KEY: DummySecretKey
+    volumes:
+      - ./src/stateMachines/tests/tmp/MockConfigFile.json:/home/StepFunctionsLocal/MockConfigFile.json
+    ports:
+      - "${OFFLINE_SF_LOCAL_PORT}:${OFFLINE_SF_LOCAL_PORT}"

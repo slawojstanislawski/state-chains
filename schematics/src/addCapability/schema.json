@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "addCapability",
+  "title": "Add Capability schema",
+  "type": "object",
+  "askQuestions": true,
+  "properties": {
+    "state-machine": {
+      "type": "string",
+      "description": "Name of the state machine",
+      "x-prompt": "What is the name of the state machine?"
+    },
+    "names": {
+      "type": "array",
+      "description": "List of capability names",
+      "items": {
+        "type": "string"
+      },
+      "x-prompt": "Enter a comma-separated list (NO SPACES) of capability names"
+    }
+  },
+  "required": ["names", "state-machine"],
+  "additionalProperties": false
+}

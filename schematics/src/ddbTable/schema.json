@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "stateMachine",
+  "title": "DDB Table schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the table",
+      "x-prompt": "What is the name of the table (no spaces)?"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false
+}

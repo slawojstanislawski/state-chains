@@ -1,0 +1,50 @@
+import {
+  DdbTable,
+  getStageSpecificConfig,
+  InferKey,
+  KeySchema,
+} from '@libs/aws/dynamodb'
+import { toStageQualifiedName } from '@libs/utils'
+
+export const name = 'resources'
+export const resourceKey = `${name}Table`
+export const stageQualifiedName = toStageQualifiedName(name)
+
+export enum Category {
+  MEMORIES = 'memories',
+  NOTES = 'notes',
+  LINKS = 'links',
+}
+
+export type RecordType = {
+  id: string
+  title: string
+  description: string
+  tags: string
+  category?: Category
+  synced?: boolean
+}
+
+const keySchema = [
+  {
+    AttributeName: 'id',
+    KeyType: 'HASH',
+  },
+] satisfies KeySchema<RecordType>
+
+export const spec: DdbTable<RecordType> = {
+  Type: 'AWS::DynamoDB::Table',
+  Properties: {
+    TableName: stageQualifiedName,
+    AttributeDefinitions: [
+      {
+        AttributeName: 'id',
+        AttributeType: 'S',
+      },
+    ],
+    KeySchema: keySchema,
+    ...getStageSpecificConfig(__dirname),
+  },
+}
+
+export type KeysType = InferKey<typeof keySchema>

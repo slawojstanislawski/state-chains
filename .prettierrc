@@ -1,0 +1,10 @@
+{
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "arrowParens": "always",
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@(libs|functions|resources|stateMachines)(.*)$", "^[.].*$"],
+  "importOrderSeparation": true
+}

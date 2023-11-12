@@ -1,0 +1,26 @@
+# common
+.DS_Store
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories and files
+.serverless
+.idea
+.esbuild
+.build
+.env
+serverless.yml
+
+# Serverless offline - test mocks configuration
+src/stateMachines/tests/tmp/MockConfigFile.json
+.dynamodb
+docker/dynamodb/shared-local-instance.db
+
+# Dynamodb offline - generated json seed files
+seed/*.json
+
+# Cloud Formation generated types
+libs/aws/types/cfn/index.ts
+libs/aws/types/cfn/spec.json

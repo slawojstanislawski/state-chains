@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "happyPathTest",
+  "title": "Happy Path Test schema",
+  "type": "object",
+  "askQuestions": true,
+  "properties": {
+    "state-machine": {
+      "type": "string",
+      "description": "Name of the state machine",
+      "x-prompt": "Which state machine to generate 'HappyPath' test case for?"
+    }
+  },
+  "required": ["state-machine"],
+  "additionalProperties": false
+}
